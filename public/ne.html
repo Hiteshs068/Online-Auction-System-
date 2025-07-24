@@ -1,0 +1,377 @@
+<div id="create-auction" class="tab-content" style="display:none;">
+    <div class="container1">
+        <h1>Online Auction Form</h1>
+        <p>Please fill out this form to list your item for auction.</p>
+        
+        <form id="auction-form" enctype="multipart/form-data">
+            <label for="auctionId">Auction ID *</label>
+            <input type="text" id="auctionId" name="auctionId" required readonly>
+            <label for="item-name">Name of Item *</label>
+            <input type="text" id="item-name" name="item-name" required>
+            
+            <label for="item-image">Upload Picture of Item *</label>
+            <div class="file-upload" id="file-drop-area">
+                <input type="file" id="item-image" name="itemImage" accept="image/*" required>
+                <p id="file-upload-text">Upload a File<br>Drag and drop file here</p>
+            </div>
+            
+            <label for="base-price">Base Price of Item (₹) *</label>
+            <input type="text" id="base-price" name="base-price" placeholder="e.g., 5,000" required>
+            
+            <label for="start-date">Auction Start Date and Time *</label>
+            <input type="date" id="start-date" name="start-date" required>
+            <input type="time" id="start-time" name="start-time" required>
+            <!-- <select id="start-ampm">
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select> -->
+            
+            <label for="end-date">Auction Ending Date and Time *</label>
+            <input type="date" id="end-date" name="end-date" required>
+            <input type="time" id="end-time" name="end-time" required>
+            <!-- <select id="start-ampm">
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select> -->
+            
+            <label for="item-details">Details of Item *</label>
+            <textarea id="item-details" name="item-details" required></textarea>
+            
+            <h4>Select Auction Type</h4>
+            <label class="radiobox">English-style Auction
+                <input type="radio" name="auction-type" value="english" required>
+                <span class="checkmark"></span>
+            </label>
+            <label class="radiobox">Dutch-style Auction                
+                <input type="radio" name="auction-type" value="dutch" required>
+                <span class="checkmark"></span>
+            </label>
+            
+            <label for="category">Category of Item *</label>
+            <input type="text" id="category" name="category" required>
+            
+            <h2>Seller Details</h2>
+            <p>Please fill out the form to list your details.</p>
+            
+            <label for="seller-name">Name of Seller *</label>
+            <div class="name-container">
+                <select class="prefix">
+                    <option>Mr.</option>
+                    <option>Mrs.</option>
+                    <option>Ms.</option>
+                </select>
+                <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+                <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+            </div>
+  
+            <label for="address">Address *</label>
+            <input type="text" id="address" name="address" placeholder="Street Address" required>
+            <input type="text" id="city" name="city" placeholder="City" required>
+            <input type="text" id="state" name="state" placeholder="State" required>
+            <input type="text" id="zip" name="zip" placeholder="Zip Code" required>
+            <label for="country">Country *</label>
+            <select id="country" name="country" required>
+                <option value="">Please Select</option>
+                <option value="india">India</option>
+                <option value="usa">United States</option>
+                <option value="canada">Canada</option>
+                <option value="uk">United Kingdom</option>
+                <option value="australia">Australia</option>
+                <option value="germany">Germany</option>
+                <option value="france">France</option>
+                <option value="italy">Italy</option>
+                <option value="spain">Spain</option>
+                <option value="brazil">Brazil</option>
+                <option value="mexico">Mexico</option>
+                <option value="china">China</option>
+                <option value="japan">Japan</option>
+                <option value="south-korea">South Korea</option>
+                <option value="russia">Russia</option>
+                <option value="south-africa">South Africa</option>
+                <option value="argentina">Argentina</option>
+                <option value="new-zealand">New Zealand</option>
+                <option value="sweden">Sweden</option>
+                <option value="norway">Norway</option>
+                <option value="finland">Finland</option>
+                <option value="switzerland">Switzerland</option>
+                <option value="netherlands">Netherlands</option>
+                <option value="belgium">Belgium</option>
+                <option value="singapore">Singapore</option>
+                <option value="uae">United Arab Emirates</option>
+                <option value="malaysia">Malaysia</option>
+                <option value="indonesia">Indonesia</option>
+                <option value="thailand">Thailand</option>
+                <option value="philippines">Philippines</option>
+            </select>
+            
+            <label for="phone">Mobile Number *</label>
+            <input type="text" id="phone" name="phone" placeholder="91+ 6635485554" required>
+            
+            <label for="education">Educational Qualification *</label>
+            <select id="education" name="education" required>
+                <option value="">Please Select</option>
+                <option value="high-school">High School</option>
+                <option value="bachelors">Bachelor's Degree</option>
+                <option value="masters">Master's Degree</option>
+                <option value="phd">Ph.D.</option>
+                <option value="other">Other</option>
+            </select>
+            
+            <h3>Bank Details of Seller</h3>
+            <p>Please fill in every detail kindly.</p>
+            
+            <label>Account Holder Name <span style="color: red;">*</span></label>
+            <input type="text" id="holderName" required>
+            
+            <label>Bank Name and Branch <span style="color: red;">*</span></label>
+            <input type="text" id="bankName" required>
+            
+            <label>IFSC Code <span style="color: red;">*</span></label>
+            <input type="text" id="ifscCode" required>
+            
+            <label>Account Number <span style="color: red;">*</span></label>
+            <input type="text" id="accountNumber" required>
+            
+            <div class="buttons">
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="reset" class="clear-btn">Clear All</button>
+            </div>
+        </form>
+    </div>
+  </div>
+  
+
+
+
+  <div id="create-auction" class="tab-content" style="display:none;">
+    <div class="container1">
+        <h1>Online Auction Form</h1>
+        <p>Please fill out this form to list your item for auction.</p>
+        
+        <form id="auction-form" enctype="multipart/form-data">
+            <label for="auctionId">Auction ID *</label>
+            <input type="text" id="auctionId" name="auctionId" required readonly>
+            <label for="item-name">Name of Item *</label>
+            <input type="text" id="item-name" name="item-name" required>
+            
+            <label for="item-image">Upload Picture of Item *</label>
+            <div class="file-upload" id="file-drop-area">
+                <input type="file" id="item-image" name="itemImage" accept="image/*" required>
+                <p id="file-upload-text">Upload a File<br>Drag and drop file here</p>
+            </div>
+            
+            <label for="base-price">Base Price of Item (₹) *</label>
+            <input type="text" id="base-price" name="base-price" placeholder="e.g., 5,000" required>
+            
+            <label for="start-date">Auction Start Date and Time *</label>
+            <input type="date" id="start-date" name="start-date" required>
+            <input type="time" id="start-time" name="start-time" required>
+            <!-- <select id="start-ampm">
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select> -->
+            
+            <label for="end-date">Auction Ending Date and Time *</label>
+            <input type="date" id="end-date" name="end-date" required>
+            <input type="time" id="end-time" name="end-time" required>
+            <!-- <select id="start-ampm">
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select> -->
+            
+            <label for="item-details">Details of Item *</label>
+            <textarea id="item-details" name="item-details" required></textarea>
+            
+            <h4>Select Auction Type</h4>
+            <label class="radiobox">English-style Auction
+                <input type="radio" name="auction-type" value="english" required>
+                <span class="checkmark"></span>
+            </label>
+            <label class="radiobox">Dutch-style Auction                
+                <input type="radio" name="auction-type" value="dutch" required>
+                <span class="checkmark"></span>
+            </label>
+            
+            <label for="category">Category *</label>
+            <select id="category" name="category" required>
+                <option value="">Please Select</option>
+                <optgroup label="Animals & Pets">
+                    <option value="dogs">Dogs</option>
+                    <option value="cats">Cats</option>
+                    <option value="birds">Birds</option>
+                    <option value="fish">Fish</option>
+                    <option value="reptiles">Reptiles</option>
+                    <option value="rabbits">Rabbits</option>
+                    <option value="hamsters">Hamsters</option>
+                    <option value="horses">Horses</option>
+                    <option value="farm-animals">Farm Animals</option>
+                    <option value="exotic-animals">Exotic Animals</option>
+                </optgroup>
+                <optgroup label="Products & Items">
+                    <option value="electronics">Electronics</option>
+                    <option value="vehicles">Vehicles</option>
+                    <option value="real-estate">Real Estate</option>
+                    <option value="art">Art</option>
+                    <option value="antiques">Antiques</option>
+                    <option value="jewelry">Jewelry</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="collectibles">Collectibles</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="books">Books</option>
+                    <option value="sports">Sports Equipment</option>
+                    <option value="tools">Tools</option>
+                    <option value="musical-instruments">Musical Instruments</option>
+                    <option value="toys">Toys & Games</option>
+                    <option value="industrial">Industrial Equipment</option>
+                </optgroup>
+                <optgroup label="Other">
+                    <option value="services">Services</option>
+                    <option value="tenders">Tenders</option>
+                </optgroup>
+            </select>
+            
+            
+              <label for="num-bidders">Number of Bidders *</label>
+              <input type="number" id="num-bidders" name="num-bidders" min="1" required>
+            
+            <h2>Seller Details</h2>
+            <p>Please fill out the form to list your details.</p>
+            
+            <label for="seller-name">Name of Seller *</label>
+            <div class="name-container">
+                <select class="prefix">
+                    <option>Mr.</option>
+                    <option>Mrs.</option>
+                    <option>Ms.</option>
+                </select>
+                <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+                <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+            </div>
+  
+            <label for="address">Address *</label>
+            <input type="text" id="address" name="address" placeholder="Street Address" required>
+            <input type="text" id="city" name="city" placeholder="City" required>
+            <input type="text" id="state" name="state" placeholder="State" required>
+            <input type="text" id="zip" name="zip" placeholder="Zip Code" required>
+            <label for="country">Country *</label>
+            <select id="country" name="country" required>
+                <option value="">Please Select</option>
+                <option value="india">India</option>
+                <option value="usa">United States</option>
+                <option value="canada">Canada</option>
+                <option value="uk">United Kingdom</option>
+                <option value="australia">Australia</option>
+                <option value="germany">Germany</option>
+                <option value="france">France</option>
+                <option value="italy">Italy</option>
+                <option value="spain">Spain</option>
+                <option value="brazil">Brazil</option>
+                <option value="mexico">Mexico</option>
+                <option value="china">China</option>
+                <option value="japan">Japan</option>
+                <option value="south-korea">South Korea</option>
+                <option value="russia">Russia</option>
+                <option value="south-africa">South Africa</option>
+                <option value="argentina">Argentina</option>
+                <option value="new-zealand">New Zealand</option>
+                <option value="sweden">Sweden</option>
+                <option value="norway">Norway</option>
+                <option value="finland">Finland</option>
+                <option value="switzerland">Switzerland</option>
+                <option value="netherlands">Netherlands</option>
+                <option value="belgium">Belgium</option>
+                <option value="singapore">Singapore</option>
+                <option value="uae">United Arab Emirates</option>
+                <option value="malaysia">Malaysia</option>
+                <option value="indonesia">Indonesia</option>
+                <option value="thailand">Thailand</option>
+                <option value="philippines">Philippines</option>
+            </select>
+            
+            <label for="phone">Mobile Number *</label>
+            <input type="text" id="phone" name="phone" placeholder="91+ 6635485554" required>
+            
+            <label for="education">Educational Qualification *</label>
+            <select id="education" name="education" required>
+                <option value="">Please Select</option>
+                <option value="high-school">High School</option>
+                <option value="bachelors">Bachelor's Degree</option>
+                <option value="masters">Master's Degree</option>
+                <option value="phd">Ph.D.</option>
+                <option value="other">Other</option>
+            </select>
+            
+            <h3>Payment Details of Seller</h3>
+            <p>Please fill in every detail kindly.</p>
+            
+             <!-- Payment Method Selection -->
+      <label for="payment-method">Choose Payment Method:</label>
+      <select id="payment-method" name="payment-method" required>
+          <option value="">Select Payment Method</option>
+          <option value="debit-card">Debit Card</option>
+          <option value="credit-card">Credit Card</option>
+          <option value="net-banking">Net Banking</option>
+          <option value="upi">UPI</option>
+      </select>
+  
+      <!-- Card Payment Fields -->
+      <label for="auctioneer-card-number">Card Number:</label>
+      <input type="text" id="auctioneer-card-number" name="auctioneer-card-number" placeholder="Enter Card Number" maxlength="16">
+  
+      <label for="auctioneer-card-name">Cardholder Name:</label>
+      <input type="text" id="auctioneer-card-name" name="auctioneer-card-name" placeholder="Enter Cardholder Name">
+  
+      <label for="auctioneer-expiry-date">Expiry Date:</label>
+      <input type="month" id="auctioneer-expiry-date" name="auctioneer-expiry-date">
+  
+  
+     <!-- Bank Account Details -->
+      <h3>Bank Account Details</h3>
+     <label for="auctioneer-bank-select">Select Bank:</label>
+     <select id="auctioneer-bank-select" name="auctioneer-bank-select">
+       <option value="">Choose Bank</option>
+       <option value="hdfc">HDFC Bank</option>
+       <option value="icici">ICICI Bank</option>
+       <option value="sbi">State Bank of India</option>
+       <option value="axis">Axis Bank</option>
+       <option value="kotak">Kotak Mahindra Bank</option>
+     </select>
+  
+  
+     
+     <label for="account-holder-name">Account Holder Name:</label>
+     <input type="text" id="account-holder-name" name="account-holder-name" placeholder="Enter Account Holder Name">
+  
+     <label for="bank-name">Bank Name:</label>
+     <input type="text" id="bank-name" name="bank-name" placeholder="Enter Bank Name">
+  
+     <label for="ifsc-code">IFSC Code:</label>
+     <input type="text" id="ifsc-code" name="ifsc-code" placeholder="Enter IFSC Code">
+  
+     <label for="account-number">Account Number:</label>
+     <input type="text" id="account-number" name="account-number" placeholder="Enter Account Number">
+  
+      <!-- UPI Payment Section -->
+   <h3>UPI Payment Details</h3>
+  
+      <label for="auctioneer-upi-provider">Select UPI Provider:</label>
+      <select id="auctioneer-upi-provider" name="auctioneer-upi-provider">
+        <option value="">Choose UPI Provider</option>
+        <option value="google-pay">Google Pay</option>
+        <option value="amazon-pay">Amazon Pay</option>
+        <option value="paypal">PayPal</option>
+      </select>
+  
+      <!-- UPI ID Input -->
+      <label for="auctioneer-upi-id">Enter UPI ID:</label>
+      <input type="text" id="auctioneer-upi-id" name="auctioneer-upi-id" placeholder="example@upi">
+  
+  
+  
+      <div class="buttons">
+          <button type="submit" class="submit-btn">Submit</button>
+          <button type="reset" class="clear-btn">Clear All</button>
+      </div>
+  </form>
+    </div>
+  </div>

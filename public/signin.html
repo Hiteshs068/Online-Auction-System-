@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Online Auction</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+     <!-- SweetAlert2 Library -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="signup-container">
+        <!-- Left Form Section -->
+        <div class="form-section">
+            <div class="form-content">
+                <h1>Welcome To AUCSHUB</h1>
+                <p>Start your journey</p>
+                <div class="form-frame">
+                    <!-- Signup Form -->
+                    <form id="signup-form" action="/signup" method="POST">
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <div class="input-icon">
+                                <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Number -->
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number</label>
+                            <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+                        </div>
+
+                        <!-- Date of Birth -->
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+
+                        <!-- Profile Picture Upload -->
+                         <div class="form-group">
+                            <label for="profileImage">Upload Profile Picture</label>
+                            <input type="file" id="profileImage" name="profileImage" accept="image/*" required>
+                            <img id="profilePreview" class="image-preview" style="display:none; width: 100px;">
+                        </div>
+                        
+                        <!-- Proof of Identity Selection -->
+                         <div class="form-group">
+                            <label for="proofType">Select Proof of Identity</label>
+                            <select id="proofType" name="proofType" required>
+                                <option value="">Select Document</option>
+                                <option value="aadhar">Aadhar Card</option>
+                                <option value="pan">PAN Card</option>
+                                <option value="driving">Driving License</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Proof of Identity Upload -->
+                         <div class="form-group">
+                            <label for="identityProof">Upload Proof of Identity</label>
+                            <input type="file" id="identityProof" name="identityProof" accept="image/*" required>
+                            <img id="identityPreview" class="image-preview" style="display:none; width: 100px;">
+                        </div>
+
+
+                        <!-- Gender -->
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select your gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="input-icon">
+                                <input type="password" id="password" name="password" placeholder="Enter your password"
+                                    required>
+                                <i class="fa-solid fa-eye" id="togglePassword"></i>
+                            </div>
+                        </div>
+
+                      <!-- Terms and Conditions -->
+                       <div class="form-group terms-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms and Conditions</a></label>
+                    </div>
+
+                  <!-- Loader -->
+<div class="loader" id="loader" style="display: none;"></div>
+
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn-submit">Sign Up</button>
+                    </form>
+
+                </div>
+                <p class="signin-text">Already have an account? <a href="login.html">Log In</a></p>
+            </div>
+        </div>
+
+        <!-- Right Background Section -->
+        <div class="image-section"></div>
+    </div>
+
+
+    <script>
+        document.getElementById("signup-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const loader = document.getElementById("loader");
+            const submitBtn = document.querySelector(".btn-submit");
+        
+            // Show loader and disable submit button
+            loader.style.display = "block";
+            submitBtn.disabled = true;
+        
+            try {
+                const response = await fetch("http://localhost:5000/signup", {
+                    method: "POST",
+                    body: formData,
+                });
+        
+                const data = await response.json();
+        
+                // Hide loader and enable submit button
+                loader.style.display = "none";
+                submitBtn.disabled = false;
+        
+                if (response.status === 201) {
+                    Swal.fire({
+                        title: "Account Created!",
+                        text: data.message,
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    }).then(() => {
+                        window.location.href = "login.html";
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Signup Failed!",
+                        text: data.message,
+                        icon: "error",
+                        confirmButtonText: "Try Again"
+                    });
+                }
+            } catch (err) {
+                // Hide loader and enable button on error
+                loader.style.display = "none";
+                submitBtn.disabled = false;
+        
+                Swal.fire({
+                    title: "Error!",
+                    text: "Error signing up. Please check your connection and try again.",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
+            }
+        });
+        
+        // Toggle Password Visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', () => {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            togglePassword.classList.toggle('fa-eye-slash');
+        });
+        
+        // Redirect to login page when clicking a link or button
+        const redirectToLogin = () => {
+            window.location.href = 'login.html';
+        };
+        
+        const loginLink = document.getElementById('loginLink');
+        if (loginLink) {
+            loginLink.addEventListener('click', redirectToLogin);
+        }
+        
+        // Date of Birth Validation (Minimum Age 18)
+        const disableUnder18Dates = () => {
+            const dobInput = document.getElementById('dob');
+            const today = new Date();
+            const maxDate = new Date();
+            maxDate.setFullYear(today.getFullYear() - 18);
+            dobInput.setAttribute('max', maxDate.toISOString().split('T')[0]);
+        };
+        
+        // Call the function to disable dates when the page loads
+        disableUnder18Dates();
+        
+        // Age validation before form submission
+        document.getElementById("signup-form").addEventListener("submit", (e) => {
+            const dobInput = document.getElementById('dob').value;
+            const dobDate = new Date(dobInput);
+            const today = new Date();
+            const age = today.getFullYear() - dobDate.getFullYear();
+            const monthDiff = today.getMonth() - dobDate.getMonth();
+            const dayDiff = today.getDate() - dobDate.getDate();
+        
+            if (age < 18 || (age === 18 && monthDiff < 0) || (age === 18 && monthDiff === 0 && dayDiff < 0)) {
+                Swal.fire({
+                    title: "Age Restriction",
+                    text: "You must be at least 18 years old to sign up.",
+                    icon: "warning",
+                    confirmButtonText: "OK"
+                });
+                e.preventDefault();
+                return;
+            }
+        });
+        
+        // Image Preview for Profile and Identity Proof
+        document.getElementById("profileImage").addEventListener("change", function(event) {
+            previewImage(event, "profilePreview");
+        });
+        
+        document.getElementById("identityProof").addEventListener("change", function(event) {
+            previewImage(event, "identityPreview");
+        });
+        
+        function previewImage(event, previewId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(previewId).src = e.target.result;
+                    document.getElementById(previewId).style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        </script>
+        
+    
+
+</body>
+
+</html>

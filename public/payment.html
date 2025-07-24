@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="payment.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+     <!-- SweetAlert2 Library -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Complete Your Payment</h2>
+
+        <!-- Payment Method Selection -->
+        <label for="payment-method">Choose Payment Method:</label>
+        <select id="payment-method">
+            <option value="card">Card Payment</option>
+            <option value="upi">UPI Payment</option>
+            <option value="netbanking">Net Banking</option>
+            <option value="paypal">PayPal</option>
+            <option value="cod">Cash on Delivery (COD)</option>
+        </select>
+
+        <!-- Card Payment Form -->
+        <form id="card-payment-form">
+            <label for="name">Cardholder Name:</label>
+            <input type="text" id="name" required placeholder="John Doe">
+
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" required maxlength="16" placeholder="1234 5678 9012 3456">
+
+            <label for="expiry">Expiry Date:</label>
+            <input type="month" id="expiry" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="password" id="cvv" required maxlength="3" pattern="[0-9]{3}" placeholder="123">
+        </form>
+
+        <!-- UPI Payment Form -->
+        <form id="upi-payment-form" style="display: none;">
+            <label for="upi-id">Enter UPI ID:</label>
+            <input type="text" id="upi-id" required placeholder="example@upi">
+            
+            <label for="upi-amount">Enter Amount (INR):</label>
+            <input type="number" id="upi-amount" required placeholder="100.00" min="1">
+
+            <button type="button" id="generate-qr">Generate QR Code</button>
+            <div id="qr-code"></div>
+        </form>
+
+        <!-- Net Banking Form -->
+        <form id="netbanking-form" style="display: none;">
+            <label for="bank">Select Your Bank:</label>
+            <select id="bank">
+                <option value="hdfc">HDFC Bank</option>
+                <option value="sbi">State Bank of India</option>
+                <option value="icici">ICICI Bank</option>
+                <option value="axis">Axis Bank</option>
+            </select>
+        </form>
+
+        <!-- PayPal Form -->
+        <form id="paypal-form" style="display: none;">
+            <label for="paypal-email">PayPal Email:</label>
+            <input type="email" id="paypal-email" required placeholder="Enter your PayPal email">
+        </form>
+
+        <!-- Cash on Delivery (COD) Form -->
+        <div id="cod-form" style="display: none;">
+            <p>You have selected <strong>Cash on Delivery (COD)</strong>. Please ensure you have the exact amount ready.</p>
+
+            <!-- Address Details -->
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" required placeholder="Enter full name">
+
+            <label for="phone-number">Phone Number:</label>
+            <input type="tel" id="phone-number" required placeholder="Enter phone number">
+
+            <label for="address">Delivery Address:</label>
+            <textarea id="address" required placeholder="Enter delivery address"></textarea>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" required placeholder="Enter city">
+
+            <label for="zipcode">Zip Code:</label>
+            <input type="text" id="zipcode" required placeholder="Enter zip code">
+
+            <label for="country">Country:</label>
+            <input type="text" id="country" required placeholder="Enter country">
+        </div>
+
+        <button id="pay-now-btn">Pay Now</button>
+    </div>
+
+    <script src="payment.js"></script>
+</body>
+</html>

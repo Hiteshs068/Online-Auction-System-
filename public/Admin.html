@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Auction Management</title>
+    <link rel="stylesheet" href="styles(3).css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+    <!-- SweetAlert2 Library -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <i class="bx bx-menu menu-icon"></i>
+            <span class="logo-name">AUCSHUB </span>
+        </div>
+        <div class="sidebar">
+            <div class="logo">
+                <i class="bx bx-menu menu-icon"></i>
+                <span class="logo-name">Admin Panel</span>
+            </div>
+            <div class="sidebar-content">
+                <ul class="lists">
+                    <li class="list"><a href="#" class="nav-link" onclick="openTab(event, 'dashboard')"><i
+                                class="bx bx-home-alt icon"></i><span class="link">Dashboard</span></a></li>
+                    <li class="list"><a href="#" class="nav-link" onclick="openTab(event, 'manage-auctions')"><i
+                                class="bx bx-list-check icon"></i><span class="link">Manage Auctions</span></a></li>
+                    <li class="list"><a href="#" class="nav-link" onclick="openTab(event, 'users')"><i
+                                class="bx bx-user-check icon"></i><span class="link">Users</span></a></li>
+                    <li class="list"><a href="#" class="nav-link" onclick="openTab(event, 'winners')"><i
+                                class="bx bx-trophy icon"></i><span class="link">Winners</span></a></li>
+                    <li class="list"><a href="#" class="nav-link" onclick="openTab(event, 'CompletedAuctions')"><i
+                                class="bx bx-list-ul icon"></i><span class="link">Completed Auctions</span></a></li>
+                    <li class="list"><a href="#" class="nav-link" onclick="openTab(event, 'admin-profile')"><i
+                                class="bx bx-user icon"></i><span class="link">Admin Profile</span></a></li>
+                    <li class="list"><a href="#" class="nav-link" onclick="openTab(event, 'logout')"><i
+                                class="bx bx-log-out icon"></i><span class="link">Logout</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="overlay"></section>
+
+    <div id="dashboard" class="tab-content active">
+        <h2>Admin Dashboard</h2>
+        <p>Welcome to the admin panel. Manage auctions, users, and settings.</p>
+
+        <div class="dashboard-stats">
+            <div class="stat-box">
+                <h3>Total Auctions</h3>
+                <p id="total-auctions">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Active Auctions</h3>
+                <p id="active-auctions">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Upcoming Auctions</h3>
+                <p id="upcoming-auctions">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Completed Auctions</h3>
+                <p id="completed-auctions">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Registered Users</h3>
+                <p id="total-users">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Total Earnings</h3>
+                <p id="total-earnings">$0</p>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <button onclick="addAuction()">➕ Add Auction</button>
+
+
+            <button onclick="manageUsers()">👤 Manage Users</button>
+            <button onclick="viewReports()">📊 View Reports</button>
+        </div>
+
+        <h3>Recent Auctions</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Auction ID</th>
+                    <th>Item Name</th>
+                    <th>Base Price</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="recentAuctions"></tbody>
+        </table>
+    </div>
+
+
+
+    <div id="manage-auctions" class="tab-content">
+        <div class="tab-container1"></div>
+        <h1>Admin Auction Management</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Auction ID</th>
+                    <th>Item Name</th>
+                    <th>Base Price</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Auction Type</th>
+                    <th>Category</th>
+                    <th>Seller Name</th>
+                    <th>Status</th>
+                    <th>View More</th>
+                    <th>Verify</th>
+                    <th>Reject</th>
+                </tr>
+            </thead>
+            <tbody id="auctionTableBody"></tbody>
+        </table>
+
+        <div id="auctionModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Auction Details</h2>
+                <p><strong>Auction ID:</strong> <span id="modalAuctionId"></span></p>
+                <p><strong>Item Details:</strong> <span id="modalItemDetails"></span></p>
+                <p><strong>Address:</strong> <span id="modalAddress"></span></p>
+                <p><strong>Country:</strong> <span id="modalCountry"></span></p>
+                <p><strong>Mobile:</strong> <span id="modalMobile"></span></p>
+                <p><strong>Education:</strong> <span id="modalEducation"></span></p>
+                <h3>Bank Details</h3>
+                <p><strong>Holder Name:</strong> <span id="modalHolderName"></span></p>
+                <p><strong>Bank Name:</strong> <span id="modalBankName"></span></p>
+                <p><strong>IFSC Code:</strong> <span id="modalIfscCode"></span></p>
+                <p><strong>Account Number:</strong> <span id="modalAccountNumber"></span></p>
+                <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+                <p><strong>No of Bidders:</strong> <span id="num-Bidders"></span></p>
+                <div>
+                    <h3>Product Image:</h3>
+                    <img id="modalItemImage" src="" alt="Product Image" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="users" class="tab-content">
+        <h2>Users Management</h2>
+        <p>Manage registered users, update roles, and remove inactive users.</p>
+
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Profile Image</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Identity Proof</th>
+                    <th>Proof Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody"></tbody>
+        </table>
+    </div>
+
+
+
+    <div id="winners" class="tab-content">
+        <h2>Winners List</h2>
+        <p>View the list of auction winners.</p>
+
+        <table id="winnerTable">
+            <thead>
+                <tr>
+                    <th>Auction ID</th>
+                    <th>Item Name</th>
+                    <th>Winner Name</th>
+                    <th>Winner Email</th>
+                    <th>Winning Bid</th>
+                </tr>
+            </thead>
+            <tbody id="winnerTableBody"></tbody>
+        </table>
+    </div>
+
+
+
+    <div id="CompletedAuctions" class="tab-content">
+        <div class="tab-container4">
+            <table id="auction-table" border="1">
+                <thead>
+                    <tr>
+                        <th>Auction ID</th>
+                        <th>Item Name</th>
+                        <th>Base Price</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Auction Type</th>
+                        <th>Category</th>
+                        <th>Seller Name</th>
+                        <th>Expired (Days)</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="auction-body">
+                    <!-- Data will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+    <div id="admin-profile" class="tab-content">
+        <h2>Admin Profile & Settings</h2>
+        <p>Manage your admin profile and update details.</p>
+
+        <div class="admin-details">
+            <p><strong>Username:</strong> <span id="adminUsername"></span></p>
+        </div>
+
+        <button class="edit-btn" onclick="editAdminProfile()">✏ Edit Profile</button>
+    </div>
+
+    <script src="admin-profile.js"></script>
+
+
+
+    <div id="logout" class="tab-content">
+        <h2>Logout</h2>
+        <p>Are you sure you want to log out?</p>
+        <button class="logout-btn" onclick="logoutAdmin()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </div>
+
+
+    <script>
+        // Function to open tabs
+        function openTab(event, tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+
+            document.getElementById(tabId).style.display = 'block';
+
+            // Check if event exists before using event.currentTarget
+            if (event) {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                event.currentTarget.classList.add('active');
+            }
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            openTab(event, 'dashboard');
+        });
+
+        // Sidebar Toggle Functionality
+        const navBar = document.querySelector("nav"),
+            menuBtns = document.querySelectorAll(".menu-icon"),
+            overlay = document.querySelector(".overlay");
+
+        menuBtns.forEach((menuBtn) => {
+            menuBtn.addEventListener("click", () => {
+                navBar.classList.toggle("open");
+            });
+        });
+
+        overlay.addEventListener("click", () => {
+            navBar.classList.remove("open");
+        });
+
+
+
+        // fetch auctions for admin panel 
+        async function fetchPendingAuctions() {
+            try {
+                const response = await fetch("http://localhost:5000/pending-auctions");
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const auctions = await response.json();
+                const tableBody = document.getElementById("auctionTableBody");
+                tableBody.innerHTML = "";
+
+                auctions.forEach(auction => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                <td>${auction.auctionId}</td>
+                <td>${auction.itemName}</td>
+                <td>${auction.basePrice}</td>
+                <td>${auction.startDate}</td>
+                <td>${auction.endDate}</td>
+                <td>${auction.auctionType}</td>
+                <td>${auction.category}</td>
+                <td>${auction.sellerName}</td>
+                <td>${auction.status}</td>
+                <td>
+                    <button onclick="viewMore(${auction.auctionId}, '${auction.itemName}', '${auction.itemImage}', '${auction.basePrice}', '${auction.startDate}', '${auction.endDate}', '${auction.itemDetails}', '${auction.auctionType}', '${auction.category}', '${auction.sellerName}', '${auction.address}', '${auction.country}', '${auction.mobile}', '${auction.education}', '${auction.bankDetails?.holderName || ''}', '${auction.bankDetails?.bankName || ''}', '${auction.bankDetails?.ifscCode || ''}', '${auction.bankDetails?.accountNumber || ''}', '${auction.status}', '${auction.numBidders}')">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </td>
+                <td>
+                    <button onclick="updateAuctionStatus(${auction.auctionId}, 'accepted')">
+                        <i class="fas fa-check"></i>
+                    </button>
+                </td>
+                <td>
+                    <button onclick="updateAuctionStatus(${auction.auctionId}, 'rejected')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </td>
+            `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error fetching pending auctions:", error);
+            }
+        }
+
+        function viewMore(auctionId, itemName, itemImage, basePrice, startDate, endDate, itemDetails, auctionType, category, sellerName, address, country, mobile, education, holderName, bankName, ifscCode, accountNumber, status, numBidders) {
+            document.getElementById("modalAuctionId").innerText = auctionId;
+            document.getElementById("modalItemDetails").innerText = itemDetails;
+            document.getElementById("modalAddress").innerText = address;
+            document.getElementById("modalCountry").innerText = country;
+            document.getElementById("modalMobile").innerText = mobile;
+            document.getElementById("modalEducation").innerText = education;
+            document.getElementById("modalHolderName").innerText = holderName;
+            document.getElementById("modalBankName").innerText = bankName;
+            document.getElementById("modalIfscCode").innerText = ifscCode;
+            document.getElementById("modalAccountNumber").innerText = accountNumber;
+            document.getElementById("modalStatus").innerText = status;
+            document.getElementById("num-Bidders").innerText = numBidders;
+            document.getElementById("modalItemImage").src = `http://localhost:5000/image/${itemImage}`;
+            document.getElementById("auctionModal").style.display = "block";
+        }
+
+        document.querySelector(".close-btn").addEventListener("click", function () {
+            document.getElementById("auctionModal").style.display = "none";
+        });
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("auctionModal")) {
+                document.getElementById("auctionModal").style.display = "none";
+            }
+        };
+
+        async function updateAuctionStatus(auctionId, status) {
+            try {
+                let response;
+                if (status === "accepted") {
+                    // Verify the auction
+                    response = await fetch(`http://localhost:5000/api/updateAuction/${auctionId}`, {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ status: "verified" }) // Mark as verified
+                    });
+                } else if (status === "rejected") {
+                    // Delete auction and update status in statusAuction schema
+                    response = await fetch(`http://localhost:5000/api/deleteAuction/${auctionId}`, {
+                        method: "DELETE",
+                        headers: { "Content-Type": "application/json" }
+                    });
+                }
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                Swal.fire({
+                    title: "Success!",
+                    text: result.message,
+                    icon: "success",
+                    confirmButtonText: "OK"
+                });
+
+                fetchPendingAuctions(); // Refresh the list
+            } catch (error) {
+                console.error("Error updating auction status:", error);
+                Swal.fire({
+                    title: "Error!",
+                    text: "Error updating auction status. Check console for details.",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
+
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchPendingAuctions);
+
+
+
+
+        // dashboard page js for admin panel
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Simulating dynamic data fetch
+            document.getElementById("total-auctions").innerText = 120;
+            document.getElementById("active-auctions").innerText = 45;
+            document.getElementById("upcoming-auctions").innerText = 30;
+            document.getElementById("completed-auctions").innerText = 45;
+            document.getElementById("total-users").innerText = 250;
+            document.getElementById("total-earnings").innerText = "$150,000";
+
+            // Example Recent Auctions Data
+            const recentAuctions = [
+                { id: "32555251", name: "Vintage Watch", price: "₹ 500", start: "2025-03-01", end: "2025-03-05", status: "Active" },
+                { id: "32556564", name: "Antique Vase", price: "₹ 1,200", start: "2025-02-25", end: "2025-03-02", status: "Completed" },
+                { id: "54555467", name: "Classic Car", price: "₹ 30,000", start: "2025-03-10", end: "2025-03-15", status: "Upcoming" },
+            ];
+
+            let auctionTable = document.getElementById("recentAuctions");
+            recentAuctions.forEach(auction => {
+                let row = `<tr>
+                <td>${auction.id}</td>
+                <td>${auction.name}</td>
+                <td>${auction.price}</td>
+                <td>${auction.start}</td>
+                <td>${auction.end}</td>
+                <td>${auction.status}</td>
+            </tr>`;
+                auctionTable.innerHTML += row;
+            });
+        });
+
+        function addAuction() {
+            Swal.fire({
+                title: "Redirecting...",
+                text: "Redirecting to Add Auction Page",
+                icon: "info",
+                confirmButtonText: "OK"
+            }).then(() => {
+                window.location.href = "dashboard.html";
+            });
+
+        }
+
+        function manageUsers() {
+            Swal.fire({
+                title: "Redirecting...",
+                text: "Redirecting to Manage Users Page",
+                icon: "info",
+                confirmButtonText: "OK"
+            });
+
+        }
+
+        function viewReports() {
+            Swal.fire({
+                title: "Redirecting...",
+                text: "Redirecting to Reports Page",
+                icon: "info",
+                confirmButtonText: "OK"
+            });
+
+        }
+
+
+        async function fetchAdminEarnings() {
+  try {
+    let response = await fetch("/api/admin-earnings");
+    let data = await response.json();
+    document.getElementById("total-earnings").innerText = `₹${data.earnings}`;
+  } catch (error) {
+    console.error("Error fetching earnings:", error);
+    document.getElementById("total-earnings").innerText = "Error!";
+  }
+}
+
+window.onload = fetchAdminEarnings; // Page load pe call hoga
+
+
+
+
+
+
+        // fetch user detail for admin panel
+        document.addEventListener("DOMContentLoaded", function () {
+            fetchUsers();
+        });
+
+        function fetchUsers() {
+            fetch("http://localhost:5000/api/users")
+                .then(response => response.json())
+                .then(users => {
+                    let userTable = document.getElementById("userTableBody");
+                    userTable.innerHTML = ""; // Clear previous content
+
+                    users.forEach(user => {
+                        let row = `
+                    <tr>
+                        <td rowspan="2">${user._id}</td>
+                        <td rowspan="2">
+                            <img src="http://localhost:5000/image/${user.profileImage}" alt="Profile" width="50" height="50" style="border-radius: 50%;">
+                        </td>
+                        <td rowspan="2">${user.name}</td>
+                        <td rowspan="2">${user.email}</td>
+                        <td rowspan="2">${user.mobile}</td>
+                        <td rowspan="2">${new Date(user.dob).toLocaleDateString()}</td>
+                        <td rowspan="2">${user.gender}</td>
+                        <td rowspan="2">${user.proofType || 'N/A'}</td>
+                        <td rowspan="2">
+                            <img src="http://localhost:5000/image/${user.identityProof}" alt="Proof" width="80">
+                        </td>
+                        <td>
+                            <i class="fas fa-edit action-icon edit-icon" onclick="editUser('${user._id}')" title="Edit User"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fas fa-trash-alt action-icon delete-icon" onclick="deleteUser('${user._id}')" title="Delete User"></i>
+                        </td>
+                    </tr>
+                `;
+                        userTable.innerHTML += row;
+                    });
+                })
+                .catch(error => console.error("Error fetching users:", error));
+        }
+
+        function editUser(userId) {
+            fetch(`http://localhost:5000/api/users/${userId}`)
+                .then(response => response.json())
+                .then(user => {
+                    let newName = prompt("Enter new name:", user.name);
+                    let newEmail = prompt("Enter new email:", user.email);
+                    let newMobile = prompt("Enter new mobile number:", user.mobile);
+                    let newDob = prompt("Enter new date of birth (YYYY-MM-DD):", user.dob);
+                    let newGender = prompt("Enter gender:", user.gender);
+                    let newProofType = prompt("Enter proof type:", user.proofType || "N/A");
+
+                    if (newName && newEmail && newMobile && newDob && newGender && newProofType) {
+                        fetch(`http://localhost:5000/api/users/${userId}`, {
+                            method: "PUT",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                name: newName,
+                                email: newEmail,
+                                mobile: newMobile,
+                                dob: newDob,
+                                gender: newGender,
+                                proofType: newProofType
+                            }),
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                Swal.fire({
+                                    title: "Success!",
+                                    text: "User updated successfully!",
+                                    icon: "success",
+                                    confirmButtonText: "OK"
+                                });
+
+                                fetchUsers(); // Refresh table
+                            })
+                            .catch(error => console.error("Error updating user:", error));
+                    }
+                })
+                .catch(error => console.error("Error fetching user details:", error));
+        }
+
+
+
+        function deleteUser(userId) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to recover this user!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, Delete",
+                cancelButtonText: "Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://localhost:5000/api/users/${userId}`, { method: "DELETE" })
+                    .then(response => response.json())
+                    .then(data => {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: data.message,
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        });
+                        fetchUsers();
+                    })
+                    .catch(error => console.error("Error deleting user:", error));
+                }
+            });
+
+        }
+
+
+
+        // fetch winners details for admin panel 
+        document.addEventListener("DOMContentLoaded", function () {
+            fetchWinners();
+        });
+
+        async function fetchWinners() {
+            try {
+                const response = await fetch("http://localhost:5000/api/winners");
+                const winners = await response.json();
+
+                let tableBody = document.getElementById("winnerTableBody");
+                tableBody.innerHTML = "";
+
+                winners.forEach(winner => {
+                    let row = `
+                <tr>
+                    <td>${winner.auctionId}</td>
+                    <td>${winner.itemName}</td>
+                    <td>${winner.winnerName}</td>
+                    <td>${winner.winnerEmail}</td>
+                    <td>$${winner.winningBid}</td>
+                </tr>
+            `;
+                    tableBody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error("Error fetching winners:", error);
+            }
+        }
+
+
+        // fetch detail from admin dtabase fro admin page 
+        document.addEventListener("DOMContentLoaded", function () {
+            fetchAdminProfile();
+        });
+
+        async function fetchAdminProfile() {
+            try {
+                const response = await fetch("http://localhost:5000/api/admin");
+                const admin = await response.json();
+
+                if (admin) {
+                    document.getElementById("adminUsername").textContent = admin.username;
+                }
+            } catch (error) {
+                console.error("Error fetching admin details:", error);
+            }
+        }
+
+        function editAdminProfile() {
+            Swal.fire({
+                title: "Coming Soon!",
+                text: "Edit Profile feature is coming soon!",
+                icon: "info",
+                confirmButtonText: "OK"
+            });
+
+        }
+
+
+
+        // logout fuction for admin panel
+        function logoutUser() {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You will be logged out of your session.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, Logout",
+                cancelButtonText: "Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch("/api/logout", {
+                        method: "POST",
+                        credentials: "include",
+                        headers: { "Content-Type": "application/json" },
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                         Swal.fire({
+                            title: "Logged Out",
+                            text: data.message,
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        }).then(() => {
+                            window.location.href = "admin-login.html";
+                        });
+                    })
+                    .catch((error) => console.error("Logout failed:", error));
+                }
+            });
+
+        }
+
+        async function fetchAuctions() {
+        try {
+            console.log("Fetching auctions...");
+            const response = await fetch('/api/auctions'); // API to fetch all auctions
+            if (!response.ok) throw new Error("Failed to fetch");
+
+            const auctions = await response.json();
+            console.log("Fetched Auctions:", auctions);
+
+            const tableBody = document.getElementById("auction-body");
+            tableBody.innerHTML = ""; // Clear old data
+
+            const currentDate = new Date();
+
+            auctions.forEach(auction => {
+                const endDate = new Date(auction.endDate);
+                const expiredDays = Math.floor((currentDate - endDate) / (1000 * 60 * 60 * 24)); // Calculate days expired
+
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${auction.auctionId}</td>
+                    <td>${auction.itemName}</td>
+                    <td>$${auction.basePrice}</td>
+                    <td>${new Date(auction.startDate).toDateString()}</td>
+                    <td>${new Date(auction.endDate).toDateString()}</td>
+                    <td>${auction.auctionType}</td>
+                    <td>${auction.category}</td>
+                    <td>${auction.sellerName}</td>
+                    <td>${expiredDays >= 0 ? `${expiredDays} days` : "Not expired"}</td>
+                    <td>
+                        <button onclick="deleteAuction('${auction.auctionId}')" style="border: none; background: none; cursor: pointer;">
+                            ❌
+                        </button>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        } catch (error) {
+            console.error("Error fetching auctions:", error);
+        }
+    }
+
+    async function deleteAuction(auctionId) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to recover this auction!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Delete it!",
+            cancelButtonText: "Cancel"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch(`/api/auctions/${auctionId}`, { method: "DELETE" });
+
+                    if (response.ok) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Auction deleted successfully!",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        });
+                        fetchAuctions();
+                    } else {
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Failed to delete auction.",
+                            icon: "error",
+                    confirmButtonText: "OK"
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Error!",
+                text: "Error deleting auction.",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        }
+    }
+});
+
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchAuctions);
+
+    //dashboard
+    async function fetchDashboardStats() {
+  try {
+    const response = await fetch("/admin-dashboard-stats");
+    const data = await response.json();
+
+    // Update the dashboard elements
+    document.getElementById("total-auctions").textContent = data.totalAuctions;
+    document.getElementById("active-auctions").textContent = data.activeAuctions;
+    document.getElementById("upcoming-auctions").textContent = data.upcomingAuctions;
+    document.getElementById("completed-auctions").textContent = data.completedAuctions;
+    document.getElementById("total-users").textContent = data.totalUsers;
+    document.getElementById("total-earnings").textContent = data.totalEarnings;
+  } catch (error) {
+    console.error("Error fetching dashboard stats:", error);
+  }
+}
+
+// Call this function when the page loads
+fetchDashboardStats();
+
+
+function addAuction() {
+    window.location.href = "dashboard.html"; // Redirect to add auction page
+}
+
+
+function logoutAdmin() {
+    fetch('/admin-logout', { method: 'GET' })
+        .then(response => {
+            if (response.ok) {
+                sessionStorage.clear();  // Prevent session restoration
+                localStorage.clear();
+                window.location.href = '/login-admin.html';  // Redirect to admin login
+            }
+        })
+        .catch(error => console.error('Admin Logout Failed:', error));
+}
+
+// Prevent back button after logout
+window.history.pushState(null, "", window.location.href);
+window.onpopstate = function () {
+    window.history.pushState(null, "", window.location.href);
+};
+
+    </script>
+</body>
+
+</html>

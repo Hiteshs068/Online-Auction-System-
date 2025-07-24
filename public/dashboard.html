@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | AUCSHUB</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+  <link rel="stylesheet" href="style(2).css"> <!-- Linking External CSS -->
+ <!-- SweetAlert2 Library -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+ 
+
+</head>
+
+<body>
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <div class="header-logo">
+        <img src="img/logoah1.jpg" alt="Logo">
+      </div>
+      <h3 class="brand-name">AUCSHUB</h3>
+    </header>
+
+    <nav class="sidebar-nav">
+      <ul class="nav-list primary-nav">
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="openTab(event, 'dashboard')">
+            <span class="nav-icon material-symbols-rounded">dashboard</span>
+            <span class="nav-label">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="openTab(event, 'cart')">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="nav-label">Cart</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="openTab(event, 'item')">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="nav-label">Item</span>
+          </a>
+          <span class="nav-tooltip">Item</span>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="openTab(event, 'create-auction')">
+            <span class="nav-icon">
+              <i class="fa-solid fa-circle-plus"></i>
+            </span>
+            <span class="nav-label">Create Auction</span>
+          </a>
+          <span class="nav-tooltip">Create Auction</span>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="openTab(event, 'bookmarks')">
+            <span class="nav-icon material-symbols-rounded">star</span>
+            <span class="nav-label">Bookmarks</span>
+          </a>
+          <span class="nav-tooltip">Bookmarks</span>
+        </li>
+      </ul>
+
+      <ul class="nav-list secondary-nav">
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="openTab(event, 'profile')">
+            <span class="nav-icon material-symbols-rounded">account_circle</span>
+            <span class="nav-label">Profile</span>
+          </a>
+          <span class="nav-tooltip">Profile</span>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" onclick="openTab(event, 'logout')">
+            <span class="nav-icon material-symbols-rounded">logout</span>
+            <span class="nav-label">Logout</span>
+          </a>
+          <span class="nav-tooltip">Logout</span>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+
+  <div class="tab">
+    <class="tab active" onclick="openTab(event, 'dashboard')">
+      <class="tab" onclick="openTab(event, 'cart')">
+        <class="tab" onclick="openTab(event, 'item')">
+          <class="tab" onclick="openTab(event, 'create-auction')">
+            <class="tab" onclick="openTab(event, 'bookmarks')">
+              <class="tab" onclick="openTab(event, 'profile')">
+                <class="tab" onclick="openTab(event, 'logout')">
+
+  </div>
+
+
+  <div class="main-content">
+    <div id="dashboard" class="tab-content">
+
+      <!-- Image Slider -->
+      <div class="slider-container">
+        <div class="slider">
+          <img src="img/dish1.jpg" alt="Image 1">
+          <img src="img/dish2.jpg" alt="Image 2">
+          <img src="img/dish3.jpg" alt="Image 3">
+          <img src="img/dish4.jpg" alt="Image 4">
+          <img src="img/dish5.jpg" alt="Image 5">
+          <img src="img/dish6.jpg" alt="Image 6">
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+      </div>
+
+      <!-- About Us Section -->
+      <div class="about-us">
+        <h2>About Us</h2>
+        <p class="about-text">
+            AUCSHUB: Unleash the Power of Online Auctions! Online auctions have transformed the way people buy and sell, offering a fast, transparent, and competitive marketplace. With just a few clicks, buyers can participate in thrilling bidding wars, while sellers can reach a wider audience and secure the best prices for their items.<br><br>
+            Our platform allows users to participate in exciting bidding events, where rare collectibles, luxury items, and exclusive deals are up for grabs. Whether you are looking for vintage art, high-end electronics, or limited-edition products, our auction system provides an opportunity to win exclusive items at the best possible price.<br><br>
+            To join an auction, users must apply before the bidding begins, as each auction has a limited number of participants set by the seller. This ensures fair competition and gives every bidder an equal opportunity to win. Applying in advance also allows sellers to verify participants and create a secure, well-managed auction environment.<br><br>
+            Once the auction starts, only approved bidders can place bids in real-time, competing for the item based on the auction format. The bidding process is smooth and engaging, with instant updates reflecting the latest bid amounts. Participants must stay active and strategic to secure their desired item before the auction ends.<br><br>
+            In an English Auction, bidding starts at a low price and increases as participants place higher bids, with the highest bidder winning the auction. This is the most traditional auction method, often used for valuable items such as antiques, artworks, and luxury goods. The competition intensifies as bidders try to outbid each other before time runs out.<br><br>
+            In a Dutch Auction, bidding starts at a high price and gradually decreases over time until the first bidder accepts the current price. This format is commonly used in real estate, flower markets, and stock IPOs, allowing buyers to wait for the right price while risking the chance of someone else claiming the deal first.<br><br>
+            All auctions have a real-time countdown timer, ensuring transparency and allowing participants to track bidding progress. The timer creates a sense of urgency, encouraging bidders to act fast and make decisive offers. Once the countdown reaches zero, no further bids are accepted, and the final result is determined instantly.<br><br>
+            Only registered users can place bids, and they must follow platform-defined minimum and maximum bidding rules. These rules prevent unfair practices and ensure that bidding remains competitive yet controlled. Users who fail to meet bidding requirements will not be able to participate, maintaining the integrity of each auction.<br><br>
+            At the end of the auction, the system automatically selects the winner and displays their details along with the winning bid amount. This eliminates manual errors and ensures a fair outcome. The winner is immediately notified, and auction results are securely recorded for future reference.<br><br>
+            The winner can securely complete their purchase using integrated payment methods such as bank transfers and UPI. Our payment gateway ensures a smooth and protected transaction process, reducing the risk of fraud. Once payment is confirmed, the seller is notified to initiate the delivery or handover of the item.<br><br>
+            With dynamic pricing, automated winner selection, and a secure payment system, our platform delivers a seamless and thrilling auction experience. Whether you are a buyer looking for unbeatable deals or a seller aiming to maximize profits, our online auction system provides an innovative and reliable solution.
+        </p>
+        <button id="show-more" onclick="toggleAboutUs()">Show More</button>
+    </div>
+
+    <div class="image-section">
+      <div class="image-container">
+        <img src="img/img (1).jpg" alt="Auction Insights" class="auction-image">
+      </div>
+    </div>
+<!-- Video Section -->
+<div class="video-section">
+  <h2>🎥 Watch How It Works</h2>
+
+  <!-- Top row: Two landscape videos -->
+  <div class="video-container">
+    <video controls class="landscape">
+      <source src="img/video1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <video controls class="landscape">
+      <source src="img/video2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+
+
+
+<div class="image-section">
+  <div class="image-container">
+    <img src="img/img (2).jpg" alt="Auction Insights" class="auction-image">
+  </div>
+</div>
+
+
+
+<!-- 🔹 Separate Section for Portrait Videos -->
+<div class="portrait-section">
+  <h2>📱 Mobile View Demonstrations</h2>
+  
+  <div class="portrait-container">
+    <div class="video-card">
+      <video controls class="portrait">
+        <source src="img/video 3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-card">
+      <video controls class="portrait">
+        <source src="img/video4.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="video-card">
+      <video controls class="portrait">
+        <source src="img/video5.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</div>
+
+
+<!-- 🔹 Image Section -->
+<div class="image-section">
+  <div class="image-container">
+    <img src="img/img (3).jpg" alt="Auction Insights" class="auction-image">
+   
+  </div>
+</div>
+
+    
+
+      <!-- Auction Tips Section -->
+      <div class="auction-tips">
+        <h2><i class="fa-solid fa-lightbulb"></i> Auction Tips</h2>
+        <ul id="auction-tips-list">
+          <li><i class="fa-solid fa-magnifying-glass"></i> Start with Research: Always research the item before
+            bidding.</li>
+          <li><i class="fa-solid fa-wallet"></i> Set a Budget: Don’t overbid in excitement.</li>
+          <li><i class="fa-solid fa-bolt"></i> Bid Late, Bid Smart: Try bidding close to the end for better chances.
+          </li>
+          <li><i class="fa-solid fa-bell"></i> Enable Notifications: Stay updated on new auctions.</li>
+        </ul>
+      </div>
+
+
+      <div class="image-section">
+        <div class="image-container">
+          <img src="img/img (5).jpg" alt="Auction Insights" class="auction-image">
+        </div>
+      </div>
+
+
+<!-- Upcoming Auctions Section -->
+<div class="upcoming-auctions">
+  <h2>📅 Upcoming Auctions</h2>
+  <ul id="auction-list">
+    <li>Loading upcoming auctions...</li>
+  </ul>
+</div>
+<!-- 🔹 Image Section -->
+<div class="image-section">
+  <div class="image-container">
+    
+    <img src="img/img (4).jpg" alt="Auction Insights" class="auction-image">
+  </div>
+</div>
+
+
+
+    
+      <!-- Dashboard Image -->
+<img src="img/dashgimg.jpg" alt="Dashboard Image" class="dashboard-image">
+
+    </div>
+  </div>
+
+
+
+
+
+
+ 
+<!-- Cart Section -->
+<div id="cart" class="tab-content" style="display:none;">
+  <div class="cart-container3">
+      <div class="cart-header">
+          <h1>My Won Items</h1>
+      </div>
+      <p>Below are the items you have won in auctions:</p>
+      <div id="cart-items">
+        <i class="fa-solid fa-hand-pointer"></i> Click Here
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+  <div id="item" class="tab-content" style="display:none;">
+    <div class="tab-container">
+      <div class="container">
+        <div class="card" data-title="Paplet Fish" data-img="img/FISH1.jpeg" data-price="1000">
+          <img src="img/FISH1.jpeg" alt="Paplet">
+          <h2>Paplet Fish</h2>
+          <p class="bid">Base Bid: Rs. 1000</p>
+          <button class="bids">Bid Now</button>
+          <i class="fa fa-bookmark save-icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="bidModal" class="modal">
+      <div class="modal-content">
+        <!-- Left Side: Item Image -->
+        <div class="modal-image">
+          <img id="modalImage" src="" alt="Auction Item">
+          <h2 id="modalTitle"></h2>
+          <p id="modalPrice"></p>
+          <p id="modalItemDetails"></p>
+         
+
+        </div>
+
+        <!-- Right Side: Text and Bidding Section -->
+        <div class="modal-text">
+          <p id="countdown"></p>
+
+          <!-- Auction Timeline Table -->
+          <div class="auction-timing">
+            <table class="timing-table">
+              <tr>
+                <th>Start Date & Time</th>
+                <td id="modalStartDate"></td>
+              </tr>
+              <tr>
+                <th>End Date & Time</th>
+                <td id="modalEndDate"></td>
+              </tr>
+            </table>
+          </div>
+
+          <p id="currentBid"></p>
+          <p id="modalAuctionType"></p>
+          <p><strong>Seller emailID:</strong> <span id="modalSeller"></span></p>
+
+          <!-- Bidding Section -->
+          <div class="bid-box">
+            <input type="number" id="bidAmount" placeholder="Enter bid amount">
+            <button id="placeBid">Place Bid</button>
+          </div>
+
+          <!-- Close Button -->
+          <span class="close">&times;</span>
+        </div>
+
+        <!-- Center-Bottom: Top Bidders List -->
+        <div class="bidders-list">
+          <h3>Top Bidders</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Amount</th>
+                <th>Date & Time</th>
+              </tr>
+            </thead>
+            <tbody id="biddersTable">
+              <!-- Bidders will be added here dynamically -->
+            </tbody>
+          </table>
+          <!-- Auction End Time (Ensure this exists in the modal) -->
+           <span id="modalEndDate" style="display: none;">2025-02-28T18:00:00</span>
+
+        </div>
+        <!-- Winner Table Section (Initially Hidden) -->
+<div id="winnerSection" style="display: none;">
+  <h3>Auction Winner</h3>
+  <table>
+      <thead>
+          <tr>
+              <th>Auction ID</th>
+              <th>Item Name</th>
+              <th>Winner Name</th>
+              <th>Winner Email</th>
+              <th>Winning Bid</th>
+             
+              
+          </tr>
+      </thead>
+      <tbody id="winnersTable"></tbody>
+  </table>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div id="create-auction" class="tab-content" style="display:none;">
+    <div class="container1">
+      <h1>Online Auction Form</h1>
+      <p>Please fill out this form to list your item for auction.</p>
+
+      <form id="auction-form" enctype="multipart/form-data">
+        <label for="auctionId">Auction ID *</label>
+        <input type="text" id="auctionId" name="auctionId" required readonly>
+        <label for="item-name">Name of Item *</label>
+        <input type="text" id="item-name" name="item-name" required>
+
+        <label for="item-image">Upload Picture of Item *</label>
+        <div class="file-upload" id="file-drop-area">
+          <input type="file" id="item-image" name="itemImage" accept="image/*" required>
+          <p id="file-upload-text">Upload a File<br>Drag and drop file here</p>
+        </div>
+
+        <label for="base-price">Base Price of Item (₹) *</label>
+        <input type="text" id="base-price" name="base-price" placeholder="e.g., 5,000" required>
+
+        <label for="start-date">Auction Start Date and Time *</label>
+        <input type="date" id="start-date" name="start-date" required>
+        <input type="time" id="start-time" name="start-time" required>
+        <!-- <select id="start-ampm">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select> -->
+
+        <label for="end-date">Auction Ending Date and Time *</label>
+        <input type="date" id="end-date" name="end-date" required>
+        <input type="time" id="end-time" name="end-time" required>
+        <!-- <select id="start-ampm">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select> -->
+
+        <label for="item-details">Details of Item *</label>
+        <textarea id="item-details" name="item-details" required></textarea>
+
+        <h4>Select Auction Type</h4>
+        <label class="radiobox">English-style Auction
+          <input type="radio" name="auction-type" value="english" required>
+          <span class="checkmark"></span>
+        </label>
+        <label class="radiobox">Dutch-style Auction
+          <input type="radio" name="auction-type" value="dutch" required>
+          <span class="checkmark"></span>
+        </label>
+
+        <label for="category">Category *</label>
+        <select id="category" name="category" required>
+            <option value="">Please Select</option>
+            <optgroup label="Animals & Pets">
+                <option value="dogs">Dogs</option>
+                <option value="cats">Cats</option>
+                <option value="birds">Birds</option>
+                <option value="fish">Fish</option>
+                <option value="reptiles">Reptiles</option>
+                <option value="horses">Horses</option>
+                <option value="farm-animals">Farm Animals</option>
+
+            </optgroup>
+            <optgroup label="Products & Items">
+                <option value="electronics">Electronics</option>
+                <option value="vehicles">Vehicles</option>
+                <option value="real-estate">Real Estate</option>
+                <option value="art">Art</option>
+                <option value="antiques">Antiques</option>
+                <option value="jewelry">Jewelry</option>
+                <option value="fashion">Fashion</option>
+                <option value="collectibles">Collectibles</option>
+                <option value="furniture">Furniture</option>
+                <option value="books">Books</option>
+                <option value="books">Books</option>
+                <option value="sports">Sports Equipment</option>
+                <option value="tools">Tools</option>
+                <option value="musical-instruments">Musical Instruments</option>
+                <option value="toys">Toys & Games</option>
+                <option value="industrial">Industrial Equipment</option>
+            </optgroup>
+            <optgroup label="Other">
+                <option value="services">Services</option>
+                <option value="tenders">Tenders</option>
+                <option value="house">House</option>
+            </optgroup>
+        </select>
+
+        <label for="num-bidders">Number of Bidders *</label> 
+        <div class="input-icon"> 
+          <i class="fas fa-users left-icon"></i> <!-- Left Icon --> 
+          <input type="number" id="num-bidders" name="num-bidders" min="2" placeholder="Enter number of bidders"> 
+          <i class="fas fa-info-circle right-icon" title="Set the number of bidders as per your requirement. You are also included in this count, so you must click 'Apply Now' to participate. The seller also needs to click 'Apply Now' to check the status and book a slot. Once the maximum number of bidders is reached, no more applications will be accepted."></i> <!-- Right Icon --> 
+        </div>
+        
+
+      
+
+        <h2>Seller Details</h2>
+        <p>Please fill out the form to list your details.</p>
+
+        
+
+        <label for="seller-name">Name of Seller *</label>
+        <div class="name-container">
+          <select class="prefix">
+            <option>Mr.</option>
+            <option>Mrs.</option>
+            <option>Ms.</option>
+          </select>
+          <input type="text" id="first-name" name="first-name" placeholder="First Name" >
+          <input type="text" id="last-name" name="last-name" placeholder="Last Name" >
+        </div>
+
+        <label for="address">Address *</label>
+        <input type="text" id="address" name="address" placeholder="Street Address" >
+        <input type="text" id="city" name="city" placeholder="City" >
+        <input type="text" id="state" name="state" placeholder="State" >
+        <input type="text" id="zip" name="zip" placeholder="Zip Code" >
+        <label for="country">Country *</label>
+        <select id="country" name="country" >
+          <option value="">Please Select</option>
+          <option value="india">India</option>
+          <option value="usa">United States</option>
+          <option value="canada">Canada</option>
+          <option value="uk">United Kingdom</option>
+          <option value="australia">Australia</option>
+          <option value="germany">Germany</option>
+          <option value="france">France</option>
+          <option value="italy">Italy</option>
+          <option value="spain">Spain</option>
+          <option value="brazil">Brazil</option>
+          <option value="mexico">Mexico</option>
+          <option value="china">China</option>
+          <option value="japan">Japan</option>
+          <option value="south-korea">South Korea</option>
+          <option value="russia">Russia</option>
+          <option value="south-africa">South Africa</option>
+          <option value="argentina">Argentina</option>
+          <option value="new-zealand">New Zealand</option>
+          <option value="sweden">Sweden</option>
+          <option value="norway">Norway</option>
+          <option value="finland">Finland</option>
+          <option value="switzerland">Switzerland</option>
+          <option value="netherlands">Netherlands</option>
+          <option value="belgium">Belgium</option>
+          <option value="singapore">Singapore</option>
+          <option value="uae">United Arab Emirates</option>
+          <option value="malaysia">Malaysia</option>
+          <option value="indonesia">Indonesia</option>
+          <option value="thailand">Thailand</option>
+          <option value="philippines">Philippines</option>
+        </select>
+
+        <label for="phone">Mobile Number *</label>
+        <input type="text" id="phone" name="phone" placeholder="91+ 6635485554" >
+
+        <label for="education">Educational Qualification *</label>
+        <select id="education" name="education" >
+          <option value="">Please Select</option>
+          <option value="high-school">High School</option>
+          <option value="bachelors">Bachelor's Degree</option>
+          <option value="masters">Master's Degree</option>
+          <option value="phd">Ph.D.</option>
+          <option value="other">Other</option>
+        </select>
+
+        <h3>Bank Details of Seller</h3>
+        <label>Account Holder Name *</label>
+        <input type="text" id="holderName2" name="holderName">
+    
+        <label>Bank Name *</label>
+        <input type="text" id="bankName2" name="bankName">
+    
+        <label>IFSC Code *</label>
+        <input type="text" id="ifscCode2" name="ifscCode">
+    
+        <label>Account Number *</label>
+        <input type="text" id="accountNumber2" name="accountNumber">
+    
+        <label>Enter UPI ID:</label>
+        <input type="text" id="auctioneer-upi-id" name="upiId">
+    
+
+        <div class="buttons">
+          <button type="submit" class="submit-btn">Submit</button>
+          <button type="reset" class="clear-btn">Clear All</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+  <div id="bookmarks" class="tab-content" style="display:none;">
+    <div class="tab-container5">
+      <h1>Bookmarks Content</h1>
+      <p>Here are your bookmarked items.</p>
+      <ul class="bookmark-list">
+        <li><span class="bookmark-title">Bookmarked Item 1</span> - Description</li>
+        <li><span class="bookmark-title">Bookmarked Item 2</span> - Description</li>
+        <li><span class="bookmark-title">Bookmarked Item 3</span> - Description</li>
+        <li><span class="bookmark-title">Bookmarked Item 4</span> - Description</li>
+        <li><span class="bookmark-title">Bookmarked Item 5</span> - Description</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div id="profile" class="tab-content" style="display:none;">
+    <div class="tab-container4">
+      <h1>Your Profile</h1>
+      <p>View and manage your personal details here.</p>
+      <div class="profile-card">
+
+         <!-- Profile Photo Section -->
+    <div class="profile-photo-container">
+      <img id="profile-photo" src="/img/default-avatar.png" alt="Profile Photo">
+  </div>
+
+        <ul id="profile-content">
+          <li>
+            <div class="icon-container4">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="content-container4">
+              <span class="label">Name:</span> <span id="profile-name">Loading...</span>
+            </div>
+          </li>
+          <li>
+            <div class="icon-container4">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="content-container">
+              <span class="label">Email:</span> <span id="profile-email">Loading...</span>
+            </div>
+          </li>
+          <li>
+            <div class="icon-container4">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="content-container4">
+              <span class="label">Phone:</span> <span id="profile-mobile">Loading...</span>
+            </div>
+          </li>
+          <li>
+            <div class="icon-container4">
+                <i class="fas fa-venus-mars"></i>
+            </div>
+            <div class="content-container4">
+                <span class="label">Gender:</span> <span id="profile-gender">Loading...</span>
+            </div>
+        </li>
+        <li>
+            <div class="icon-container4">
+                <i class="fas fa-birthday-cake"></i>
+            </div>
+            <div class="content-container4">
+                <span class="label">Date of Birth:</span> <span id="profile-dob">Loading...</span>
+            </div>
+        </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Auction Table -->
+    <h2>All Auction Status</h2>
+    <table border="1" id="auctionTable">
+      <thead>
+        <tr>
+          <th>Auction ID</th>
+          <th>Item Name</th>
+          <th>Base Price</th>
+          <th>Seller Name</th>
+          <th>Email</th>
+          <th>itemImage</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="auctionData"></tbody>
+    </table>
+  </div>
+  </div>
+  </div>
+
+
+
+  <div id="logout" class="tab-content" style="display:none;">
+    <div class="tab-container1">
+        <h1>Logout Content</h1>
+        <p>You are about to log out. Are you sure?</p>
+        <button class="logout-button" onclick="logoutUser()">Confirm Logout</button>
+    </div>
+</div>
+
+
+
+  <script src="script1.js"></script> <!-- Linking External JS -->
+</body>
+
+</html>
