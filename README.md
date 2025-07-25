@@ -77,19 +77,8 @@ This project is built for learning and portfolio purposes.
 
 Designed & Developed by Hitesh Shukla
 
-markdown
-Copy
-Edit
 
----
 
-### ✅ What to do next:
-
-1. **Create a new file** inside your project folder: `README.md`
-2. **Paste** the content above
-3. **Edit** the GitHub repo link and screenshots section if needed
-
-Let me know if you'd like a **dark theme emoji style** like your example (`auth-stack-app`), or want me to include **live demo links, badge icons**, or anything more!
 
 
 
