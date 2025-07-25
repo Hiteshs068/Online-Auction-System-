@@ -98,4 +98,3 @@ This project is licensed under the MIT License.
 Hitesh Shukla
 Backend Developer | Full Stack Enthusiast
 📧 shuklahitesh492@gmail.com
-🔗 GitHub | LinkedIn
